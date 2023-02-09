@@ -53,8 +53,10 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 {
 	if (OtherActor->IsA<ATarget>())
 	{
-		// TODO: Destroy Target
+		//Destroy Target
+		Cast<ATarget>(OtherActor)->DestroyTarget();
 
+		//Destroys bullet
 		DestroyBullet();
 	}
 }

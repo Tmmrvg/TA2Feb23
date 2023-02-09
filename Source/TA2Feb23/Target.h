@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Target.generated.h"
 
+class UBoxComponent;
+
 UCLASS()
 class TA2FEB23_API ATarget : public AActor
 {
@@ -23,4 +25,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBoxComponent* Collider {nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* StaticMesh;
+
+	UFUNCTION()
+		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+			UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex,
+			bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void DestroyTarget();
+
+	//Variables
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Variables")
+	float MovementSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Variables")
+	float RotationSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Variables")
+	float XKillPosition;
 };

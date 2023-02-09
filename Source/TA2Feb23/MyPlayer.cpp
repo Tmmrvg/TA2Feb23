@@ -30,6 +30,7 @@ AMyPlayer::AMyPlayer()
 	Ammo = 10;
 	MaxAmmo = 10;
     MovementSpeed = 1000;
+	Lives = 5;
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -64,6 +65,15 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AMyPlayer::Reload);
 }
 
+
+void AMyPlayer::HitByTarget()
+{
+	Lives--;
+	if (Lives <= 0)
+	{
+		// TODO : Game over
+	}
+}
 
 void AMyPlayer::Forward(float input)
 {
