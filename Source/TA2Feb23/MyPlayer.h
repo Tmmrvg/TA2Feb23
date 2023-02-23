@@ -9,6 +9,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class ABullet;
+struct FInputActionValue;
 
 UCLASS()
 class TA2FEB23_API AMyPlayer : public APawn
@@ -60,6 +61,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Variables")
 	int Lives;
 
+
+	/** Public Function */
 	void HitByTarget();
 
 	/** Private Variables */
@@ -68,12 +71,40 @@ private:
 	float XInput;
 	float YInput;
 
+
 private:
 	/** Private Functions */
 
-	void Forward(float input);
-	void Right(float input);
+	void Forward(const FInputActionValue& input);
+	void Right(const FInputActionValue& input);
 
-	void Shoot();
-	void Reload();
+	void Shoot(const FInputActionValue& input);
+	void Reload(const FInputActionValue& input);
+
+public:
+	//Input
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputMappingContext* MappingContext;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* ForwardInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* RightInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* ShootInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* ReloadInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* MouseXInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InputSystem)
+	class UInputAction* MouseYInput;
+
+
+
 };
