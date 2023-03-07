@@ -71,6 +71,9 @@ private:
 	float XInput;
 	float YInput;
 
+	void MouseX(const FInputActionValue& input);
+	void MouseY(const FInputActionValue& input);
+
 
 private:
 	/** Private Functions */
